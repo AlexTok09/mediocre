@@ -29,7 +29,7 @@
             flex-direction: column; /* Aligne les éléments verticalement */
             align-items: center; /* Centre horizontalement les éléments */
             justify-content: center; /* Centre verticalement les éléments */
-            max-width: 800px; /* Largeur maximale augmentée */
+            max-width: 600px; /* Largeur maximale pour les grands écrans */
             width: 90%; /* Largeur relative pour petits écrans */
         }
 
@@ -42,7 +42,7 @@
         /* Liste des aphorismes */
         ul {
             list-style-type: disc; /* Points classiques */
-            list-style-position: outside; /* Les points restent à gauche, pas dans le texte */
+            list-style-position: inside; /* Points alignés avec le texte */
             padding: 0;
             margin: 20px 0; /* Espacement au-dessus et en dessous */
             text-align: left; /* Texte aligné à gauche dans la liste */
@@ -52,10 +52,7 @@
         li {
             margin: 10px 0; /* Espacement entre les aphorismes */
             line-height: 1.5; /* Meilleure lisibilité */
-            overflow-wrap: break-word; /* Gestion des mots longs */
-            word-wrap: break-word; /* Support pour les anciens navigateurs */
-            word-break: break-word; /* Casse les mots longs si nécessaire */
-            max-width: 100%; /* Prend toute la largeur disponible */
+            word-wrap: break-word; /* Gestion des longues phrases */
         }
 
         /* Champ texte */
@@ -71,11 +68,6 @@
             background-color: #fff; /* Fond blanc */
             color: #000; /* Texte noir */
             box-sizing: border-box; /* Inclut padding et bordures dans la largeur */
-        }
-
-        textarea:focus {
-            outline: none; /* Supprime l’effet bleu par défaut */
-            border-color: #000; /* Bordure noire au focus */
         }
 
         /* Bouton invisible (ressemble à un élément de liste) */
@@ -141,65 +133,17 @@
             <h1>Le sujet de la classe médiocre</h1>
         </header>
 
-        <!-- Formulaire de soumission -->
-        <div class="form">
-            <textarea id="new-aphorism" placeholder="Écrivez votre aphorisme ici..."></textarea><br>
-            <button id="submit-aphorism">Envoyer</button>
-        </div>
-
         <!-- Liste des aphorismes approuvés -->
         <ul id="aphorisms-list">
             <!-- Les aphorismes seront ajoutés ici par JavaScript -->
         </ul>
+
+        <!-- Formulaire de soumission d'un aphorisme -->
+        <textarea id="new-aphorism" placeholder="Écrivez votre aphorisme ici..."></textarea><br>
+        <button id="submit-aphorism">Envoyer</button>
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const aphorismsList = document.getElementById('aphorisms-list');
-            const newAphorismInput = document.getElementById('new-aphorism');
-            const submitButton = document.getElementById('submit-aphorism');
-
-            // Charger les aphorismes approuvés en temps réel
-            function loadApprovedAphorisms() {
-                const mockAphorisms = [
-                    "Le sujet de la classe médiocre fait corps avec ses biens matériels.",
-                    "Les critiques envers eux, c’est comme critiquer leur âme. Cela représente une insulte profonde qui touche leurs valeurs intimes."
-                ];
-                aphorismsList.innerHTML = ''; // Efface la liste actuelle
-                mockAphorisms.forEach(aphorism => {
-                    const li = document.createElement('li');
-                    li.textContent = aphorism;
-                    aphorismsList.appendChild(li);
-                });
-            }
-
-            // Soumettre un nouvel aphorisme
-            function submitAphorism() {
-                const text = newAphorismInput.value.trim();
-                if (!text) {
-                    alert("Veuillez entrer un aphorisme avant de soumettre !");
-                    return;
-                }
-
-                console.log("Aphorisme soumis :", text);
-                alert("Merci ! Votre aphorisme a été soumis à notre jury de la médiocrité pour validation.");
-                newAphorismInput.value = ''; // Réinitialise la boîte de texte
-            }
-
-            // Soumettre avec le bouton
-            submitButton.addEventListener('click', submitAphorism);
-
-            // Soumettre avec Entrée
-            newAphorismInput.addEventListener('keypress', (event) => {
-                if (event.key === 'Enter' && !event.shiftKey) {
-                    event.preventDefault();
-                    submitAphorism();
-                }
-            });
-
-            // Charger les aphorismes au démarrage
-            loadApprovedAphorisms();
-        });
-    </script>
+    <!-- Chargement du script JavaScript comme un module -->
+    <script src="script.js" type="module"></script>
 </body>
 </html>
