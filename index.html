@@ -14,13 +14,10 @@
         font-family: 'IBM Plex Mono', monospace; /* Police IBM Plex Mono */
         margin: 0;
         padding: 0;
-        display: flex; /* Flexbox pour centrer */
-        justify-content: center; /* Centre horizontalement */
-        align-items: center; /* Centre verticalement */
-        height: 100vh; /* Hauteur de l'écran complet */
         text-align: center; /* Centre le texte */
         background-color: #f4f4f4; /* Couleur de fond douce */
         color: #000; /* Texte noir */
+        overflow-y: auto; /* Permet de défiler sur toute la page */
     }
 
     /* Conteneur principal */
@@ -28,11 +25,10 @@
         display: flex; /* Utilise flexbox */
         flex-direction: column; /* Aligne les éléments verticalement */
         align-items: center; /* Centre horizontalement les éléments */
-        justify-content: flex-start; /* Déplace les éléments vers le haut */
+        justify-content: flex-start; /* Place les éléments en haut */
         max-width: 600px; /* Largeur maximale pour les grands écrans */
         width: 90%; /* Largeur relative pour petits écrans */
-        height: 100%; /* Prend toute la hauteur disponible */
-        overflow-y: auto; /* Permet de défiler si le contenu dépasse */
+        margin: 0 auto; /* Centre horizontalement le contenu principal */
     }
 
     /* Titre sticky */
@@ -44,7 +40,6 @@
         padding: 10px 0; /* Espacement vertical */
         width: 100%; /* Prend toute la largeur disponible */
         text-align: center; /* Centre le texte */
-        border-bottom: 1px solid #ccc; /* Ajoute une bordure discrète */
     }
 
     /* Liste des aphorismes */
@@ -68,7 +63,6 @@
         margin: 10px 0;
         padding: 10px;
         width: 100%; /* Largeur étendue */
-        max-width: 100%; /* Respecte le conteneur */
         font-family: 'IBM Plex Mono', monospace; /* Uniformité */
         font-size: 1rem;
         border: 1px solid #ccc; /* Bordure légère */
@@ -82,7 +76,6 @@
     textarea:focus {
         outline: none; /* Supprime le style bleu par défaut */
         border: 1px solid #000; /* Bordure noire */
-        background-color: #fff; /* Assure que le fond reste blanc */
     }
 
     /* Bouton invisible (ressemble à un élément de liste) */
@@ -132,8 +125,9 @@
         }
 
         textarea {
-            font-size: 0.8rem;
-            padding: 6px; /* Moins de padding */
+            font-size: 0.8rem; /* Plus petite taille de texte */
+            padding: 10px; /* Assure un espacement suffisant */
+            width: 90%; /* Limite la largeur à 90 % de l’écran */
         }
 
         li {
@@ -141,7 +135,6 @@
         }
     }
 </style>
-
 
 </head>
 <body>
