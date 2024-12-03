@@ -36,13 +36,18 @@
         /* Titre */
         header h1 {
             font-size: 1.8rem; /* Taille de police du titre */
-            margin-bottom: 20px; /* Espacement sous le titre */
+            margin-bottom: 10px; /* Espacement sous le titre */
+        }
+
+        header p {
+            font-size: 1rem;
+            margin-bottom: 20px; /* Espacement sous la définition */
         }
 
         /* Liste des aphorismes */
         ul {
             list-style-type: disc; /* Points classiques */
-            list-style-position: inside; /* Points alignés avec le texte */
+            list-style-position: outside; /* Points en dehors du texte */
             padding: 0;
             margin: 20px 0; /* Espacement au-dessus et en dessous */
             text-align: left; /* Texte aligné à gauche dans la liste */
@@ -68,6 +73,11 @@
             background-color: #fff; /* Fond blanc */
             color: #000; /* Texte noir */
             box-sizing: border-box; /* Inclut padding et bordures dans la largeur */
+        }
+
+        textarea:focus {
+            outline: none; /* Supprime l’effet bleu par défaut */
+            border-color: #000; /* Bordure noire au focus */
         }
 
         /* Bouton invisible (ressemble à un élément de liste) */
@@ -131,19 +141,66 @@
     <main>
         <header>
             <h1>Le sujet de la classe médiocre</h1>
+            <p><strong>Aphorisme :</strong> Une phrase courte exprimant une vérité ou un principe général.</p>
         </header>
+
+        <!-- Formulaire de soumission d'un aphorisme -->
+        <textarea id="new-aphorism" placeholder="Écrivez votre aphorisme ici..."></textarea><br>
+        <button id="submit-aphorism">Envoyer</button>
 
         <!-- Liste des aphorismes approuvés -->
         <ul id="aphorisms-list">
             <!-- Les aphorismes seront ajoutés ici par JavaScript -->
         </ul>
-
-        <!-- Formulaire de soumission d'un aphorisme -->
-        <textarea id="new-aphorism" placeholder="Écrivez votre aphorisme ici..."></textarea><br>
-        <button id="submit-aphorism">Envoyer</button>
     </main>
 
-    <!-- Chargement du script JavaScript comme un module -->
-    <script src="script.js" type="module"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const aphorismsList = document.getElementById('aphorisms-list');
+            const newAphorismInput = document.getElementById('new-aphorism');
+            const submitButton = document.getElementById('submit-aphorism');
+
+            // Charger les aphorismes approuvés
+            function loadApprovedAphorisms() {
+                const mockAphorisms = [
+                    "Le sujet de la classe médiocre fait corps avec ses biens matériels.",
+                    "Les critiques envers eux, c’est comme critiquer leur âme."
+                ];
+                aphorismsList.innerHTML = ''; // Efface la liste actuelle
+                mockAphorisms.forEach(aphorism => {
+                    const li = document.createElement('li');
+                    li.textContent = aphorism;
+                    aphorismsList.appendChild(li);
+                });
+            }
+
+            // Soumettre un nouvel aphorisme
+            function submitAphorism() {
+                const text = newAphorismInput.value.trim();
+                if (!text) {
+                    alert("Veuillez entrer un aphorisme avant de soumettre !");
+                    return;
+                }
+
+                console.log("Aphorisme soumis :", text);
+                alert("Merci ! Votre aphorisme a été soumis à notre jury de la médiocrité pour validation.");
+                newAphorismInput.value = ''; // Réinitialise la boîte de texte
+            }
+
+            // Soumettre avec le bouton
+            submitButton.addEventListener('click', submitAphorism);
+
+            // Soumettre avec Entrée
+            newAphorismInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter' && !event.shiftKey) {
+                    event.preventDefault();
+                    submitAphorism();
+                }
+            });
+
+            // Charger les aphorismes au démarrage
+            loadApprovedAphorisms();
+        });
+    </script>
 </body>
 </html>
