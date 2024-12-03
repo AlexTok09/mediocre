@@ -78,28 +78,28 @@
     }
 
     /* Bouton invisible (ressemble à un élément de liste) */
-    button {
-        display: inline; /* Se comporte comme un texte */
-        border: none;
-        background: none; /* Pas de fond */
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 1rem;
-        cursor: pointer;
-        padding: 0;
-        color: inherit; /* Hérite de la couleur du texte */
-    }
+button {
+            display: inline;
+            border: none;
+            background: none;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0;
+            color: #000;
+        }
 
-    button:before {
-        content: "• "; /* Ajoute un point devant */
-        color: #000; /* Couleur noire pour le point */
-    }
+        button:before {
+            content: "• ";
+            color: #000;
+        }
 
-    /* Supprime le style au survol */
-    button:hover,
-    button:focus {
-        text-decoration: none;
-        color: inherit;
-    }
+        button:hover,
+        button:focus {
+            color: #555;
+            text-decoration: underline;
+            outline: none;
+        }
 
     /* Media Queries pour les écrans moyens */
     @media (max-width: 768px) {
