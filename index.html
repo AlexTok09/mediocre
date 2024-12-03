@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le sujet de la classe médiocre</title>
     
-    <style>
+ <style>
     /* Import de la police IBM Plex Mono */
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap');
 
@@ -28,15 +28,23 @@
         display: flex; /* Utilise flexbox */
         flex-direction: column; /* Aligne les éléments verticalement */
         align-items: center; /* Centre horizontalement les éléments */
-        justify-content: center; /* Centre verticalement les éléments */
+        justify-content: flex-start; /* Déplace les éléments vers le haut */
         max-width: 600px; /* Largeur maximale pour les grands écrans */
         width: 90%; /* Largeur relative pour petits écrans */
+        height: 100%; /* Prend toute la hauteur disponible */
+        overflow-y: auto; /* Permet de défiler si le contenu dépasse */
     }
 
-    /* Titre */
-    header h1 {
-        font-size: 1.8rem; /* Taille de police du titre */
-        margin-bottom: 20px; /* Espacement sous le titre */
+    /* Titre sticky */
+    header {
+        position: sticky; /* Garde le titre visible en haut */
+        top: 0; /* Toujours visible en haut de la page */
+        background-color: #f4f4f4; /* Couleur de fond pour le rendre lisible */
+        z-index: 10; /* Place le titre au-dessus des autres éléments */
+        padding: 10px 0; /* Espacement vertical */
+        width: 100%; /* Prend toute la largeur disponible */
+        text-align: center; /* Centre le texte */
+        border-bottom: 1px solid #ccc; /* Ajoute une bordure discrète */
     }
 
     /* Liste des aphorismes */
@@ -78,28 +86,28 @@
     }
 
     /* Bouton invisible (ressemble à un élément de liste) */
-button {
-            display: inline;
-            border: none;
-            background: none;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 1rem;
-            cursor: pointer;
-            padding: 0;
-            color: #000;
-        }
+    button {
+        display: inline;
+        border: none;
+        background: none;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 1rem;
+        cursor: pointer;
+        padding: 0;
+        color: #000;
+    }
 
-        button:before {
-            content: "• ";
-            color: #000;
-        }
+    button:before {
+        content: "• ";
+        color: #000;
+    }
 
-        button:hover,
-        button:focus {
-            color: #555;
-            text-decoration: underline;
-            outline: none;
-        }
+    button:hover,
+    button:focus {
+        color: #555;
+        text-decoration: underline;
+        outline: none;
+    }
 
     /* Media Queries pour les écrans moyens */
     @media (max-width: 768px) {
@@ -133,6 +141,7 @@ button {
         }
     }
 </style>
+
 
 </head>
 <body>
