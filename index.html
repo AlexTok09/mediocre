@@ -35,6 +35,18 @@
         button:hover {
             background-color: #555;
         }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            margin: 5px auto;
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 500px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -42,13 +54,17 @@
         <h1>Le sujet de la classe médiocre</h1>
     </header>
     <main>
+        <!-- Liste des aphorismes approuvés -->
         <ul id="aphorisms-list">
-            <li>Le sujet de la classe médiocre a une doudoune sans manche</li>
+            <!-- Les aphorismes seront ajoutés ici par JavaScript -->
         </ul>
+
+        <!-- Formulaire de soumission d'un aphorisme -->
         <textarea id="new-aphorism" placeholder="Écrivez votre aphorisme ici..."></textarea><br>
         <button id="submit-aphorism">Envoyer</button>
     </main>
 
-    <script src="script.js"></script>
+    <!-- Chargement du script JavaScript comme un module -->
+    <script src="script.js" type="module"></script>
 </body>
 </html>
