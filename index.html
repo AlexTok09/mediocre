@@ -29,7 +29,7 @@
             flex-direction: column; /* Aligne les éléments verticalement */
             align-items: center; /* Centre horizontalement les éléments */
             justify-content: center; /* Centre verticalement les éléments */
-            max-width: 600px; /* Largeur maximale pour les grands écrans */
+            max-width: 800px; /* Largeur maximale augmentée */
             width: 90%; /* Largeur relative pour petits écrans */
         }
 
@@ -42,7 +42,7 @@
         /* Liste des aphorismes */
         ul {
             list-style-type: disc; /* Points classiques */
-            list-style-position: inside; /* Points alignés avec le texte */
+            list-style-position: outside; /* Les points restent à gauche, pas dans le texte */
             padding: 0;
             margin: 20px 0; /* Espacement au-dessus et en dessous */
             text-align: left; /* Texte aligné à gauche dans la liste */
@@ -52,7 +52,10 @@
         li {
             margin: 10px 0; /* Espacement entre les aphorismes */
             line-height: 1.5; /* Meilleure lisibilité */
-            word-wrap: break-word; /* Gestion des longues phrases */
+            overflow-wrap: break-word; /* Gestion des mots longs */
+            word-wrap: break-word; /* Support pour les anciens navigateurs */
+            word-break: break-word; /* Casse les mots longs si nécessaire */
+            max-width: 100%; /* Prend toute la largeur disponible */
         }
 
         /* Champ texte */
@@ -160,7 +163,7 @@
             function loadApprovedAphorisms() {
                 const mockAphorisms = [
                     "Le sujet de la classe médiocre fait corps avec ses biens matériels.",
-                    "Les critiques envers eux, c’est comme critiquer leur âme."
+                    "Les critiques envers eux, c’est comme critiquer leur âme. Cela représente une insulte profonde qui touche leurs valeurs intimes."
                 ];
                 aphorismsList.innerHTML = ''; // Efface la liste actuelle
                 mockAphorisms.forEach(aphorism => {
@@ -178,7 +181,6 @@
                     return;
                 }
 
-                // Simule l'envoi à Firestore
                 console.log("Aphorisme soumis :", text);
                 alert("Merci ! Votre aphorisme a été soumis à notre jury de la médiocrité pour validation.");
                 newAphorismInput.value = ''; // Réinitialise la boîte de texte
@@ -189,8 +191,8 @@
 
             // Soumettre avec Entrée
             newAphorismInput.addEventListener('keypress', (event) => {
-                if (event.key === 'Enter' && !event.shiftKey) { // Évite le saut de ligne
-                    event.preventDefault(); // Empêche le comportement par défaut
+                if (event.key === 'Enter' && !event.shiftKey) {
+                    event.preventDefault();
                     submitAphorism();
                 }
             });
