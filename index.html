@@ -70,6 +70,11 @@
             box-sizing: border-box; /* Inclut padding et bordures dans la largeur */
         }
 
+        textarea:focus {
+            outline: none; /* Supprime l’effet bleu par défaut */
+            border-color: #000; /* Bordure noire au focus */
+        }
+
         /* Bouton invisible (ressemble à un élément de liste) */
         button {
             display: inline; /* Se comporte comme un texte */
@@ -133,17 +138,66 @@
             <h1>Le sujet de la classe médiocre</h1>
         </header>
 
+        <!-- Formulaire de soumission -->
+        <div class="form">
+            <textarea id="new-aphorism" placeholder="Écrivez votre aphorisme ici..."></textarea><br>
+            <button id="submit-aphorism">Envoyer</button>
+        </div>
+
         <!-- Liste des aphorismes approuvés -->
         <ul id="aphorisms-list">
             <!-- Les aphorismes seront ajoutés ici par JavaScript -->
         </ul>
-
-        <!-- Formulaire de soumission d'un aphorisme -->
-        <textarea id="new-aphorism" placeholder="Écrivez votre aphorisme ici..."></textarea><br>
-        <button id="submit-aphorism">Envoyer</button>
     </main>
 
-    <!-- Chargement du script JavaScript comme un module -->
-    <script src="script.js" type="module"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const aphorismsList = document.getElementById('aphorisms-list');
+            const newAphorismInput = document.getElementById('new-aphorism');
+            const submitButton = document.getElementById('submit-aphorism');
+
+            // Charger les aphorismes approuvés en temps réel
+            function loadApprovedAphorisms() {
+                const mockAphorisms = [
+                    "Le sujet de la classe médiocre fait corps avec ses biens matériels.",
+                    "Les critiques envers eux, c’est comme critiquer leur âme."
+                ];
+                aphorismsList.innerHTML = ''; // Efface la liste actuelle
+                mockAphorisms.forEach(aphorism => {
+                    const li = document.createElement('li');
+                    li.textContent = aphorism;
+                    aphorismsList.appendChild(li);
+                });
+            }
+
+            // Soumettre un nouvel aphorisme
+            function submitAphorism() {
+                const text = newAphorismInput.value.trim();
+                if (!text) {
+                    alert("Veuillez entrer un aphorisme avant de soumettre !");
+                    return;
+                }
+
+                // Simule l'envoi à Firestore
+                console.log("Aphorisme soumis :", text);
+                alert("Merci ! Votre aphorisme a été soumis à notre jury de la médiocrité pour validation.");
+                newAphorismInput.value = ''; // Réinitialise la boîte de texte
+            }
+
+            // Soumettre avec le bouton
+            submitButton.addEventListener('click', submitAphorism);
+
+            // Soumettre avec Entrée
+            newAphorismInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter' && !event.shiftKey) { // Évite le saut de ligne
+                    event.preventDefault(); // Empêche le comportement par défaut
+                    submitAphorism();
+                }
+            });
+
+            // Charger les aphorismes au démarrage
+            loadApprovedAphorisms();
+        });
+    </script>
 </body>
 </html>
