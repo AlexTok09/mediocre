@@ -5,49 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le sujet de la classe médiocre</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            background-color: #f9f9f9;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-        }
-        main {
-            margin: 20px;
-        }
-        textarea, button {
-            margin: 10px 0;
-            padding: 10px;
-            width: 80%;
-            max-width: 500px;
-        }
-        button {
-            background-color: #333;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #555;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            background: #fff;
-            margin: 5px auto;
-            padding: 10px;
-            border-radius: 5px;
-            max-width: 500px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+    /* Import de la police IBM Plex Mono */
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap');
+
+    /* Corps de la page */
+    body {
+        font-family: 'IBM Plex Mono', monospace; /* Police IBM Plex Mono */
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        background-color: #f4f4f4; /* Couleur douce et neutre pour le fond */
+        color: #000; /* Texte noir */
+    }
+
+    /* En-tête */
+    header {
+        background-color: #f4f4f4; /* Fond identique au corps pour uniformité */
+        padding: 20px;
+        font-size: 1.5rem; /* Texte légèrement plus grand */
+        font-weight: bold; /* Mise en avant du titre */
+    }
+
+    /* Contenu principal */
+    main {
+        margin: 20px auto;
+        max-width: 600px; /* Centrer et limiter la largeur */
+    }
+
+    /* Liste des aphorismes */
+    ul {
+        list-style-type: disc; /* Affiche des points classiques */
+        list-style-position: inside; /* Points alignés avec le texte */
+        padding: 0;
+        margin: 0;
+        text-align: left; /* Alignement à gauche pour un style naturel */
+    }
+
+    li {
+        margin: 10px 0; /* Espacement entre les aphorismes */
+    }
+
+    /* Champ texte */
+    textarea {
+        margin: 10px 0;
+        padding: 10px;
+        width: 100%; /* Utilise toute la largeur disponible */
+        max-width: 500px;
+        font-family: 'IBM Plex Mono', monospace; /* Uniformité avec le site */
+        font-size: 1rem;
+        border: 1px solid #ccc; /* Bordure légère */
+        border-radius: 5px; /* Coins légèrement arrondis */
+        background-color: #fff; /* Fond blanc */
+        color: #000; /* Texte noir */
+    }
+
+    /* Bouton invisible (ressemble à un élément de liste) */
+    button {
+        display: inline; /* Se comporte comme un texte */
+        border: none;
+        background: none; /* Pas de couleur de fond */
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 1rem;
+        cursor: pointer;
+        padding: 0;
+        color: inherit; /* Hérite de la couleur du texte environnant */
+    }
+
+    button:before {
+        content: "• "; /* Ajoute un point devant */
+        color: #000; /* Couleur noire pour le point */
+    }
+
+    /* Supprime le style au survol */
+    button:hover,
+    button:focus {
+        text-decoration: none;
+        color: inherit;
+    }
+</style>
+
 </head>
 <body>
     <header>
