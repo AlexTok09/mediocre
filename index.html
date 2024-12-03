@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le sujet de la classe médiocre</title>
     
+
 <style>
     /* Import de la police IBM Plex Mono */
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap');
@@ -14,19 +15,27 @@
         font-family: 'IBM Plex Mono', monospace; /* Police IBM Plex Mono */
         margin: 0;
         padding: 0;
-        display: flex; /* Utilise flexbox pour centrer */
-        align-items: center; /* Centre verticalement */
+        display: flex; /* Flexbox pour le centrage */
         justify-content: center; /* Centre horizontalement */
-        height: 100vh; /* Hauteur de la page */
-        text-align: center;
+        align-items: center; /* Centre verticalement */
+        height: 100vh; /* Hauteur totale de l'écran */
+        text-align: center; /* Texte centré */
         background-color: #f4f4f4; /* Fond neutre */
         color: #000; /* Texte noir */
     }
 
     /* Conteneur principal */
     main {
-        max-width: 90%; /* Largeur relative pour s’adapter à l’écran */
-        text-align: center; /* Centrer le texte */
+        display: flex; /* Utilise flexbox */
+        flex-direction: column; /* Dispose les éléments verticalement */
+        align-items: center; /* Centre horizontalement les éléments */
+        max-width: 90%; /* Largeur relative pour s’adapter aux petits écrans */
+    }
+
+    /* Titre */
+    header h1 {
+        font-size: 1.8rem; /* Taille de police du titre */
+        margin-bottom: 20px; /* Espace sous le titre */
     }
 
     /* Liste des aphorismes */
@@ -34,12 +43,15 @@
         list-style-type: disc; /* Points classiques */
         list-style-position: inside; /* Points alignés avec le texte */
         padding: 0;
-        margin: 20px auto; /* Espacement autour de la liste */
+        margin: 20px 0; /* Espacement au-dessus et en dessous de la liste */
+        text-align: center; /* Texte centré */
     }
 
     li {
         margin: 10px 0; /* Espacement entre les aphorismes */
         line-height: 1.5; /* Lisibilité accrue */
+        max-width: 500px; /* Limite la largeur */
+        word-wrap: break-word; /* Permet au texte de passer à la ligne */
     }
 
     /* Champ texte */
@@ -59,7 +71,7 @@
 
     /* Bouton invisible (ressemble à un élément de liste) */
     button {
-        display: inline; /* Se comporte comme du texte */
+        display: inline; /* Se comporte comme un texte */
         border: none;
         background: none; /* Pas de fond */
         font-family: 'IBM Plex Mono', monospace;
@@ -83,6 +95,10 @@
 
     /* Media Queries pour les petits écrans */
     @media (max-width: 768px) {
+        header h1 {
+            font-size: 1.5rem; /* Réduit légèrement la taille du titre */
+        }
+
         textarea {
             font-size: 0.9rem; /* Réduit légèrement la taille */
             padding: 8px; /* Moins de padding pour s’adapter */
@@ -91,17 +107,17 @@
         li {
             margin: 8px 0; /* Moins d’espace entre les éléments */
         }
-
-        main {
-            max-width: 95%; /* Utilise presque toute la largeur de l’écran */
-        }
     }
 
     /* Media Queries pour les très petits écrans */
     @media (max-width: 480px) {
+        header h1 {
+            font-size: 1.2rem; /* Réduit encore la taille du texte */
+        }
+
         textarea {
             font-size: 0.8rem; /* Réduit encore la taille */
-            padding: 6px; /* Moins de padding */
+            padding: 6px;
         }
 
         li {
@@ -109,6 +125,7 @@
         }
     }
 </style>
+
 
 </head>
 <body>
