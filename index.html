@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le sujet de la classe médiocre</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+        }
+        main {
+            margin: 20px;
+        }
+        textarea, button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 80%;
+            max-width: 500px;
+        }
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Le sujet de la classe médiocre</h1>
+    </header>
+    <main>
+        <ul id="aphorisms-list">
+            <li>Le sujet de la classe médiocre a une doudoune sans manche</li>
+        </ul>
+        <textarea id="new-aphorism" placeholder="Écrivez votre aphorisme ici..."></textarea><br>
+        <button id="submit-aphorism">Envoyer</button>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
