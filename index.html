@@ -150,7 +150,7 @@
 
         <!-- Liste des aphorismes approuvés -->
         <ul id="aphorisms-list">
-            <!-- Les aphorismes seront ajoutés ici par JavaScript -->
+            <!-- La liste est vide au départ -->
         </ul>
     </main>
 
@@ -159,20 +159,6 @@
             const aphorismsList = document.getElementById('aphorisms-list');
             const newAphorismInput = document.getElementById('new-aphorism');
             const submitButton = document.getElementById('submit-aphorism');
-
-            // Charger les aphorismes approuvés
-            function loadApprovedAphorisms() {
-                const mockAphorisms = [
-                    "Le sujet de la classe médiocre fait corps avec ses biens matériels.",
-                    "Les critiques envers eux, c’est comme critiquer leur âme."
-                ];
-                aphorismsList.innerHTML = ''; // Efface la liste actuelle
-                mockAphorisms.forEach(aphorism => {
-                    const li = document.createElement('li');
-                    li.textContent = aphorism;
-                    aphorismsList.appendChild(li);
-                });
-            }
 
             // Soumettre un nouvel aphorisme
             function submitAphorism() {
@@ -197,9 +183,6 @@
                     submitAphorism();
                 }
             });
-
-            // Charger les aphorismes au démarrage
-            loadApprovedAphorisms();
         });
     </script>
 </body>
