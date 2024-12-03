@@ -29,20 +29,21 @@
     /* Contenu principal */
     main {
         margin: 20px auto;
-        max-width: 600px; /* Centrer et limiter la largeur */
+        max-width: 90%; /* Utilise 90% de la largeur de l'écran */
+        text-align: left; /* Alignement naturel pour les listes */
     }
 
     /* Liste des aphorismes */
     ul {
-        list-style-type: disc; /* Affiche des points classiques */
+        list-style-type: disc; /* Points classiques */
         list-style-position: inside; /* Points alignés avec le texte */
         padding: 0;
         margin: 0;
-        text-align: left; /* Alignement à gauche pour un style naturel */
     }
 
     li {
         margin: 10px 0; /* Espacement entre les aphorismes */
+        line-height: 1.5; /* Meilleure lisibilité */
     }
 
     /* Champ texte */
@@ -50,13 +51,14 @@
         margin: 10px 0;
         padding: 10px;
         width: 100%; /* Utilise toute la largeur disponible */
-        max-width: 500px;
+        max-width: 600px;
         font-family: 'IBM Plex Mono', monospace; /* Uniformité avec le site */
         font-size: 1rem;
         border: 1px solid #ccc; /* Bordure légère */
         border-radius: 5px; /* Coins légèrement arrondis */
         background-color: #fff; /* Fond blanc */
         color: #000; /* Texte noir */
+        box-sizing: border-box; /* Assure que les bordures sont incluses dans la largeur */
     }
 
     /* Bouton invisible (ressemble à un élément de liste) */
@@ -82,6 +84,46 @@
         text-decoration: none;
         color: inherit;
     }
+
+    /* Media Queries pour les petits écrans */
+    @media (max-width: 768px) {
+        header {
+            font-size: 1.2rem; /* Réduit la taille du texte de l'en-tête */
+            padding: 15px;
+        }
+
+        textarea {
+            font-size: 0.9rem; /* Réduit légèrement la taille de la police */
+            padding: 8px; /* Moins de padding pour les petits écrans */
+        }
+
+        li {
+            margin: 8px 0; /* Moins d'espace entre les éléments */
+        }
+
+        main {
+            max-width: 95%; /* Utilise presque toute la largeur de l'écran */
+            margin: 10px auto; /* Moins de marge */
+        }
+    }
+
+    /* Media Queries pour les très petits écrans */
+    @media (max-width: 480px) {
+        header {
+            font-size: 1rem; /* Réduit encore la taille du texte */
+        }
+
+        textarea {
+            font-size: 0.8rem; /* Plus petit pour s'adapter */
+            padding: 6px;
+        }
+
+        li {
+            margin: 5px 0; /* Espacement réduit pour les très petits écrans */
+        }
+    }
+</style>
+
 </style>
 
 </head>
