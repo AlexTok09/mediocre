@@ -1,38 +1,51 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const aphorismsList = document.getElementById('aphorisms-list');
-    const newAphorismInput = document.getElementById('new-aphorism');
-    const submitButton = document.getElementById('submit-aphorism');
+// Configuration Firebase (remplace les valeurs par celles de ton projet Firebase)
+const firebaseConfig = {
+  apiKey: "AIzaSyDGEmhoWkXh6hawMlCm3MdfrHjkDr7Gn1Q",
+  authDomain: "mediocregit.firebaseapp.com",
+  databaseURL: "https://mediocregit-default-rtdb.firebaseio.com",
+  projectId: "mediocregit",
+  storageBucket: "mediocregit.firebasestorage.app",
+  messagingSenderId: "530828482083",
+  appId: "1:530828482083:web:d02f170dd53878b02bc396",
+  measurementId: "G-ERJN27LSXM"
+};
+// Initialiser Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+import { getFirestore, collection, addDoc, onSnapshot, query, where } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 
-    // Fake database
-    const pendingAphorisms = [];
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-    // Add new aphorism to pending list
-    submitButton.addEventListener('click', () => {
-        const newAphorism = newAphorismInput.value.trim();
-        if (newAphorism) {
-            pendingAphorisms.push(newAphorism);
-            alert("Merci ! Votre aphorisme a été soumis pour validation.");
-            newAphorismInput.value = ''; // Clear input
-            console.log('Aphorismes en attente:', pendingAphorisms); // Simuler le backend ici
-        } else {
-            alert("Veuillez entrer un aphorisme avant d'envoyer !");
-        }
-    });
+// Récupérer les éléments du DOM
+const aphorismsList = document.getElementById('aphorisms-list');
+const newAphorismInput = document.getElementById('new-aphorism');
+const submitButton = document.getElementById('submit-aphorism');
 
-    // Mock admin validation (to simulate your backend validation process)
-    window.validateAphorism = (index) => {
-        const approvedAphorism = pendingAphorisms.splice(index, 1)[0];
-        if (approvedAphorism) {
+// Charger les aphorismes approuvés en temps réel
+function loadApprovedAphorisms() {
+    const q = query(collection(db, "aphorisms"), where("approved", "==", true));
+    onSnapshot(q, (querySnapshot) => {
+        aphorismsList.innerHTML = ''; // Effacer la liste actuelle
+        querySnapshot.forEach(doc => {
+            const aphorism = doc.data().text;
             const li = document.createElement('li');
-            li.textContent = approvedAphorism;
+            li.textContent = aphorism;
             aphorismsList.appendChild(li);
-        }
-    };
+        });
+    });
+}
 
-    // Simulate pending approval logging
-    setInterval(() => {
-        if (pendingAphorisms.length > 0) {
-            console.log('Aphorismes en attente:', pendingAphorisms);
-        }
-    }, 5000); // Log every 5 seconds
+// Soumettre un nouvel aphorisme
+submitButton.addEventListener('click', async () => {
+    const text = newAphorismInput.value.trim();
+    if (text) {
+        await addDoc(collection(db, "aphorisms"), { text, approved: false });
+        alert('Merci ! Votre aphorisme a été soumis pour validation.');
+        newAphorismInput.value = ''; // Réinitialiser le champ
+    } else {
+        alert('Veuillez entrer un aphorisme.');
+    }
 });
+
+// Charger les aphorismes au démarrage
+loadApprovedAphorisms();
