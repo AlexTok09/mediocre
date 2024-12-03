@@ -25,6 +25,7 @@ const submitButton = document.getElementById('submit-aphorism');
 
 // Fonction pour charger les aphorismes approuvés en temps réel
 function loadApprovedAphorisms() {
+    console.log("Chargement des aphorismes approuvés...");
     const approvedQuery = query(collection(db, "aphorisms"), where("approved", "==", true));
 
     onSnapshot(approvedQuery, (querySnapshot) => {
@@ -53,16 +54,16 @@ submitButton.addEventListener('click', async () => {
 
     if (text) {
         try {
-            await addDoc(collection(db, "aphorisms"), {
+            const docRef = await addDoc(collection(db, "aphorisms"), {
                 text: text,
                 approved: false // Aphorisme non approuvé par défaut
             });
+            console.log("Aphorisme soumis avec succès. Document ID :", docRef.id);
             alert("Merci ! Votre aphorisme a été soumis pour validation.");
             newAphorismInput.value = ''; // Vide le champ d'entrée après soumission
-            console.log("Aphorisme soumis :", text);
         } catch (error) {
-            console.error("Erreur lors de la soumission de l'aphorisme :", error);
-            alert("Une erreur est survenue lors de la soumission. Veuillez réessayer.");
+            console.error("Erreur lors de la soumission :", error);
+            alert("Une erreur est survenue. Veuillez réessayer.");
         }
     } else {
         alert("Veuillez entrer un aphorisme avant de soumettre !");
