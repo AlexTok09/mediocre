@@ -59,7 +59,7 @@ submitButton.addEventListener('click', async () => {
                 approved: false // Aphorisme non approuvé par défaut
             });
             console.log("Aphorisme soumis avec succès. Document ID :", docRef.id);
-            alert("Merci ! Votre aphorisme a été soumis pour validation.");
+            alert("Merci ! Votre aphorisme a été soumis pour validation auprès de notre comité de la médiocrité.");
             newAphorismInput.value = ''; // Vide le champ d'entrée après soumission
         } catch (error) {
             console.error("Erreur lors de la soumission :", error);
