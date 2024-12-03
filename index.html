@@ -4,50 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le sujet de la classe médiocre</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            background-color: #f9f9f9;
+    
+<style>
+    /* Import de la police IBM Plex Mono */
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap');
+
+    /* Corps de la page */
+    body {
+        font-family: 'IBM Plex Mono', monospace; /* Police IBM Plex Mono */
+        margin: 0;
+        padding: 0;
+        display: flex; /* Utilise flexbox pour centrer */
+        align-items: center; /* Centre verticalement */
+        justify-content: center; /* Centre horizontalement */
+        height: 100vh; /* Hauteur de la page */
+        text-align: center;
+        background-color: #f4f4f4; /* Fond neutre */
+        color: #000; /* Texte noir */
+    }
+
+    /* Conteneur principal */
+    main {
+        max-width: 90%; /* Largeur relative pour s’adapter à l’écran */
+        text-align: center; /* Centrer le texte */
+    }
+
+    /* Liste des aphorismes */
+    ul {
+        list-style-type: disc; /* Points classiques */
+        list-style-position: inside; /* Points alignés avec le texte */
+        padding: 0;
+        margin: 20px auto; /* Espacement autour de la liste */
+    }
+
+    li {
+        margin: 10px 0; /* Espacement entre les aphorismes */
+        line-height: 1.5; /* Lisibilité accrue */
+    }
+
+    /* Champ texte */
+    textarea {
+        margin: 10px 0;
+        padding: 10px;
+        width: 100%; /* Utilise toute la largeur disponible */
+        max-width: 600px;
+        font-family: 'IBM Plex Mono', monospace; /* Uniformité avec le site */
+        font-size: 1rem;
+        border: 1px solid #ccc; /* Bordure légère */
+        border-radius: 5px; /* Coins légèrement arrondis */
+        background-color: #fff; /* Fond blanc */
+        color: #000; /* Texte noir */
+        box-sizing: border-box; /* Inclut padding et bordures dans la largeur */
+    }
+
+    /* Bouton invisible (ressemble à un élément de liste) */
+    button {
+        display: inline; /* Se comporte comme du texte */
+        border: none;
+        background: none; /* Pas de fond */
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 1rem;
+        cursor: pointer;
+        padding: 0;
+        color: inherit; /* Hérite de la couleur du texte environnant */
+    }
+
+    button:before {
+        content: "• "; /* Ajoute un point devant */
+        color: #000; /* Couleur noire pour le point */
+    }
+
+    /* Supprime le style au survol */
+    button:hover,
+    button:focus {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /* Media Queries pour les petits écrans */
+    @media (max-width: 768px) {
+        textarea {
+            font-size: 0.9rem; /* Réduit légèrement la taille */
+            padding: 8px; /* Moins de padding pour s’adapter */
         }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-        }
-        main {
-            margin: 20px;
-        }
-        textarea, button {
-            margin: 10px 0;
-            padding: 10px;
-            width: 80%;
-            max-width: 500px;
-        }
-        button {
-            background-color: #333;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #555;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+
         li {
-            background: #fff;
-            margin: 5px auto;
-            padding: 10px;
-            border-radius: 5px;
-            max-width: 500px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            margin: 8px 0; /* Moins d’espace entre les éléments */
         }
-    </style>
+
+        main {
+            max-width: 95%; /* Utilise presque toute la largeur de l’écran */
+        }
+    }
+
+    /* Media Queries pour les très petits écrans */
+    @media (max-width: 480px) {
+        textarea {
+            font-size: 0.8rem; /* Réduit encore la taille */
+            padding: 6px; /* Moins de padding */
+        }
+
+        li {
+            margin: 5px 0; /* Réduit l’espacement */
+        }
+    }
+</style>
+
 </head>
 <body>
     <header>
