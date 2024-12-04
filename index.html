@@ -5,136 +5,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le sujet de la classe médiocre</title>
     
- <style>
-    /* Import de la police IBM Plex Mono */
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap');
+    <style>
+        /* Import de la police IBM Plex Mono */
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap');
 
-    /* Corps de la page */
-    body {
-        font-family: 'IBM Plex Mono', monospace; /* Police IBM Plex Mono */
-        margin: 0;
-        padding: 0;
-        text-align: center; /* Centre le texte */
-        background-color: #f4f4f4; /* Couleur de fond douce */
-        color: #000; /* Texte noir */
-        overflow-y: auto; /* Permet de défiler sur toute la page */
-    }
-
-    /* Conteneur principal */
-    main {
-        display: flex; /* Utilise flexbox */
-        flex-direction: column; /* Aligne les éléments verticalement */
-        align-items: center; /* Centre horizontalement les éléments */
-        justify-content: flex-start; /* Place les éléments en haut */
-        max-width: 600px; /* Largeur maximale pour les grands écrans */
-        width: 90%; /* Largeur relative pour petits écrans */
-        margin: 0 auto; /* Centre horizontalement le contenu principal */
-    }
-
-    /* Titre sticky */
-    header {
-        position: sticky; /* Garde le titre visible en haut */
-        top: 0; /* Toujours visible en haut de la page */
-        background-color: #f4f4f4; /* Couleur de fond pour le rendre lisible */
-        z-index: 10; /* Place le titre au-dessus des autres éléments */
-        padding: 10px 0; /* Espacement vertical */
-        width: 100%; /* Prend toute la largeur disponible */
-        text-align: center; /* Centre le texte */
-    }
-
-    /* Liste des aphorismes */
-    ul {
-        list-style-type: disc; /* Points classiques */
-        list-style-position: inside; /* Points alignés avec le texte */
-        padding: 0;
-        margin: 20px 0; /* Espacement au-dessus et en dessous */
-        text-align: left; /* Texte aligné à gauche dans la liste */
-        width: 100%; /* Liste étendue à la largeur disponible */
-    }
-
-    li {
-        margin: 10px 0; /* Espacement entre les aphorismes */
-        line-height: 1.5; /* Meilleure lisibilité */
-        word-wrap: break-word; /* Gestion des longues phrases */
-    }
-
-    /* Champ texte */
-    textarea {
-        margin: 10px 0;
-        padding: 10px;
-        width: 100%; /* Largeur étendue */
-        font-family: 'IBM Plex Mono', monospace; /* Uniformité */
-        font-size: 1rem;
-        border: 1px solid #ccc; /* Bordure légère */
-        border-radius: 5px; /* Coins légèrement arrondis */
-        background-color: #fff; /* Fond blanc */
-        color: #000; /* Texte noir */
-        box-sizing: border-box; /* Inclut padding et bordures dans la largeur */
-    }
-
-    /* Surlignage noir au focus */
-    textarea:focus {
-        outline: none; /* Supprime le style bleu par défaut */
-        border: 1px solid #000; /* Bordure noire */
-    }
-
-    /* Bouton invisible (ressemble à un élément de liste) */
-    button {
-        display: inline;
-        border: none;
-        background: none;
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 1rem;
-        cursor: pointer;
-        padding: 0;
-        color: #000;
-    }
-
-    button:before {
-        content: "• ";
-        color: #000;
-    }
-
-    button:hover,
-    button:focus {
-        color: #555;
-        text-decoration: underline;
-        outline: none;
-    }
-
-    /* Media Queries pour les écrans moyens */
-    @media (max-width: 768px) {
-        header h1 {
-            font-size: 1.5rem; /* Taille réduite pour écrans moyens */
+        /* Corps de la page */
+        body {
+            font-family: 'IBM Plex Mono', monospace; /* Police IBM Plex Mono */
+            margin: 0;
+            padding: 0;
+            text-align: center; /* Centre le texte */
+            background-color: #f4f4f4; /* Couleur de fond douce */
+            color: #000; /* Texte noir */
+            overflow-y: auto; /* Permet de défiler sur toute la page */
         }
 
-        textarea {
-            font-size: 0.9rem; /* Réduction légère de la taille */
-            padding: 8px;
+        /* Conteneur principal */
+        main {
+            display: flex; /* Utilise flexbox */
+            flex-direction: column; /* Aligne les éléments verticalement */
+            align-items: center; /* Centre horizontalement les éléments */
+            justify-content: flex-start; /* Place les éléments en haut */
+            max-width: 600px; /* Largeur maximale pour les grands écrans */
+            width: 90%; /* Largeur relative pour petits écrans */
+            margin: 0 auto; /* Centre horizontalement le contenu principal */
+        }
+
+        /* Titre sticky */
+        header {
+            position: sticky; /* Garde le titre visible en haut */
+            top: 0; /* Toujours visible en haut de la page */
+            background-color: #f4f4f4; /* Couleur de fond pour le rendre lisible */
+            z-index: 10; /* Place le titre au-dessus des autres éléments */
+            padding: 10px 0; /* Espacement vertical */
+            width: 100%; /* Prend toute la largeur disponible */
+            text-align: center; /* Centre le texte */
+        }
+
+        /* Liste des aphorismes */
+        ul {
+            list-style-type: disc; /* Points classiques */
+            list-style-position: inside; /* Points alignés avec le texte */
+            padding: 0;
+            margin: 20px 0; /* Espacement au-dessus et en dessous */
+            text-align: left; /* Texte aligné à gauche dans la liste */
+            width: 100%; /* Liste étendue à la largeur disponible */
         }
 
         li {
-            margin: 8px 0; /* Réduit l'espacement */
-        }
-    }
-
-    /* Media Queries pour les petits écrans */
-    @media (max-width: 480px) {
-        header h1 {
-            font-size: 1.2rem; /* Taille réduite pour écrans petits */
+            margin: 10px 0; /* Espacement entre les aphorismes */
+            line-height: 1.5; /* Meilleure lisibilité */
+            word-wrap: break-word; /* Gestion des longues phrases */
         }
 
+        /* Champ texte */
         textarea {
-            font-size: 0.8rem; /* Plus petite taille de texte */
-            padding: 10px; /* Assure un espacement suffisant */
-            width: 90%; /* Limite la largeur à 90 % de l’écran */
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%; /* Largeur étendue */
+            font-family: 'IBM Plex Mono', monospace; /* Uniformité */
+            font-size: 1rem;
+            border: 1px solid #ccc; /* Bordure légère */
+            border-radius: 5px; /* Coins légèrement arrondis */
+            background-color: #fff; /* Fond blanc */
+            color: #000; /* Texte noir */
+            box-sizing: border-box; /* Inclut padding et bordures dans la largeur */
         }
 
-        li {
-            margin: 5px 0; /* Réduit l'espacement pour petits écrans */
+        /* Surlignage noir au focus */
+        textarea:focus {
+            outline: none; /* Supprime le style bleu par défaut */
+            border: 1px solid #000; /* Bordure noire */
         }
-    }
-</style>
+
+        /* Nouveau style pour le bouton */
+        #submit-aphorism {
+            --b: 3px;   /* Épaisseur de la bordure */
+            --s: .45em; /* Taille des coins */
+            --color: #373B44;
+
+            padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+            color: var(--color);
+            --_p: var(--s);
+            background:
+                conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--color) 0)
+                var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+            transition: .3s linear, color 0s, background-color 0s;
+            outline: var(--b) solid #0000;
+            outline-offset: .6em;
+            font-size: 16px;
+
+            border: 0;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        #submit-aphorism:hover,
+        #submit-aphorism:focus-visible {
+            --_p: 0px;
+            outline-color: var(--color);
+            outline-offset: .05em;
+        }
+
+        #submit-aphorism:active {
+            background: var(--color);
+            color: #fff;
+        }
+
+        /* Media Queries pour les écrans moyens */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem; /* Taille réduite pour écrans moyens */
+            }
+
+            textarea {
+                font-size: 0.9rem; /* Réduction légère de la taille */
+                padding: 8px;
+            }
+
+            li {
+                margin: 8px 0; /* Réduit l'espacement */
+            }
+        }
+
+        /* Media Queries pour les petits écrans */
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.2rem; /* Taille réduite pour écrans petits */
+            }
+
+            textarea {
+                font-size: 0.8rem; /* Plus petite taille de texte */
+                padding: 10px; /* Assure un espacement suffisant */
+                width: 90%; /* Limite la largeur à 90 % de l’écran */
+            }
+
+            li {
+                margin: 5px 0; /* Réduit l'espacement pour petits écrans */
+            }
+        }
+    </style>
 
 </head>
 <body>
