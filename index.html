@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le sujet de la classe médiocre</title>
     
- <style>
+<style>
     /* Import de la police IBM Plex Mono */
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap');
 
@@ -78,28 +78,40 @@
         border: 1px solid #000; /* Bordure noire */
     }
 
-    /* Bouton invisible (ressemble à un élément de liste) */
-    button {
-        display: inline;
-        border: none;
-        background: none;
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 1rem;
-        cursor: pointer;
-        padding: 0;
-        color: #000;
+    /* Nouveau bouton (Button 89) */
+    .button-89 {
+        --b: 3px;   /* Épaisseur de la bordure */
+        --s: .45em; /* Taille des coins */
+        --color: #373B44;
+        
+        padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+        color: var(--color);
+        --_p: var(--s);
+        background:
+            conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--color) 0)
+            var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+        transition: .3s linear, color 0s, background-color 0s;
+        outline: var(--b) solid #0000;
+        outline-offset: .6em;
+        font-size: 16px;
+
+        border: 0;
+
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
     }
 
-    button:before {
-        content: "• ";
-        color: #000;
+    .button-89:hover,
+    .button-89:focus-visible {
+        --_p: 0px;
+        outline-color: var(--color);
+        outline-offset: .05em;
     }
 
-    button:hover,
-    button:focus {
-        color: #555;
-        text-decoration: underline;
-        outline: none;
+    .button-89:active {
+        background: var(--color);
+        color: #fff;
     }
 
     /* Media Queries pour les écrans moyens */
@@ -136,6 +148,7 @@
     }
 </style>
 
+
 </head>
 <body>
     <main>
@@ -145,7 +158,7 @@
 
         <!-- Formulaire de soumission d'un aphorisme -->
         <textarea id="new-aphorism" placeholder="Écrivez votre aphorisme ici..."></textarea><br>
-        <button id="submit-aphorism">Envoyer</button>
+        <button class="button-89" role="button">Envoyer</button>
 
         <!-- Liste des aphorismes approuvés -->
         <ul id="aphorisms-list">
