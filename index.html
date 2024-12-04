@@ -59,18 +59,29 @@
         }
 
         /* Champ texte */
-        textarea {
-            margin: 10px 0;
-            padding: 10px;
-            width: 100%; /* Largeur étendue */
-            font-family: 'IBM Plex Mono', monospace; /* Uniformité */
-            font-size: 1rem;
-            border: 1px solid #ccc; /* Bordure légère */
-            border-radius: 5px; /* Coins légèrement arrondis */
-            background-color: #fff; /* Fond blanc */
-            color: #000; /* Texte noir */
-            box-sizing: border-box; /* Inclut padding et bordures dans la largeur */
-        }
+ textarea {
+    margin: 10px 0;
+    padding: 12px 15px; /* Plus d'espace interne */
+    width: 100%;
+    max-width: 100%;
+    font-family: 'IBM Plex Mono', monospace; /* Uniformité avec le reste */
+    font-size: 1rem;
+    line-height: 1.5; /* Meilleure lisibilité */
+    border: 1px solid #ddd; /* Bordure légère et discrète */
+    border-radius: 8px; /* Coins subtilement arrondis */
+    background-color: #f9f9f9; /* Fond doux et clair */
+    color: #000; /* Texte noir */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Ombre interne légère */
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+textarea:focus {
+    outline: none; /* Supprime le contour bleu par défaut */
+    border-color: #373B44; /* Couleur harmonieuse au focus */
+    box-shadow: 0 0 5px rgba(55, 59, 68, 0.3); /* Effet lumineux subtil */
+    background-color: #fff; /* Fond légèrement éclairci */
+}
 
         /* Surlignage noir au focus */
         textarea:focus {
