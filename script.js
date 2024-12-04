@@ -32,7 +32,7 @@ const aphorismsList = document.getElementById('aphorisms-list');
 const newAphorismInput = document.getElementById('new-aphorism');
 const submitButton = document.getElementById('submit-aphorism');
 
-// Fonction pour charger les aphorismes approuvés en temps réel, triés par le plus récent
+// Fonction pour charger les aphorismes approuvés en temps réel, triés par le plus récent avec date discrète
 function loadApprovedAphorisms() {
     console.log("Chargement des aphorismes approuvés...");
     const approvedQuery = query(
@@ -51,7 +51,26 @@ function loadApprovedAphorisms() {
             querySnapshot.forEach(doc => {
                 const data = doc.data();
                 const li = document.createElement('li');
-                li.textContent = data.text; // Ajoute le texte de l'aphorisme à la liste
+
+                // Formatage de la date
+                let formattedDate = '';
+                if (data.timestamp) {
+                    const date = data.timestamp.toDate(); // Convertit le timestamp Firebase en objet Date
+                    formattedDate = new Intl.DateTimeFormat('fr-FR', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    }).format(date); // Formate la date
+                }
+
+                // Ajoute le texte et la date dans l'élément li
+                li.innerHTML = `
+                    <span>${data.text}</span>
+                    <small style="color: #888; font-size: 0.8rem; margin-left: 10px;">(${formattedDate})</small>
+                `;
+
                 aphorismsList.appendChild(li);
             });
             console.log("Aphorismes approuvés chargés avec succès.");
