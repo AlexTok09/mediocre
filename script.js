@@ -12,7 +12,16 @@ const firebaseConfig = {
 
 // Import des modules Firebase nécessaires
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, query, where } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    onSnapshot,
+    query,
+    where,
+    orderBy,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 
 // Initialisation Firebase
 const app = initializeApp(firebaseConfig);
@@ -23,10 +32,14 @@ const aphorismsList = document.getElementById('aphorisms-list');
 const newAphorismInput = document.getElementById('new-aphorism');
 const submitButton = document.getElementById('submit-aphorism');
 
-// Fonction pour charger les aphorismes approuvés en temps réel
+// Fonction pour charger les aphorismes approuvés en temps réel, triés par le plus récent
 function loadApprovedAphorisms() {
     console.log("Chargement des aphorismes approuvés...");
-    const approvedQuery = query(collection(db, "aphorisms"), where("approved", "==", true));
+    const approvedQuery = query(
+        collection(db, "aphorisms"),
+        where("approved", "==", true),
+        orderBy("timestamp", "desc") // Trie par date décroissante
+    );
 
     onSnapshot(approvedQuery, (querySnapshot) => {
         aphorismsList.innerHTML = ''; // Efface la liste actuelle avant de la recharger
@@ -56,7 +69,8 @@ submitButton.addEventListener('click', async () => {
         try {
             const docRef = await addDoc(collection(db, "aphorisms"), {
                 text: text,
-                approved: false // Aphorisme non approuvé par défaut
+                approved: false, // Aphorisme non approuvé par défaut
+                timestamp: serverTimestamp() // Ajout de la date/heure
             });
             console.log("Aphorisme soumis avec succès. Document ID :", docRef.id);
             alert("Merci ! Votre aphorisme a été soumis pour validation auprès de notre comité de la médiocrité.");
