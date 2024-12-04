@@ -44,9 +44,8 @@
 
         /* Liste des aphorismes */
         ul {
-            list-style-type: disc; /* Points classiques */
-            list-style-position: inside; /* Points alignés avec le texte */
-            padding: 0;
+            list-style: none; /* Supprime les marqueurs par défaut */
+            padding: 0; /* Supprime les marges intérieures */
             margin: 20px 0; /* Espacement au-dessus et en dessous */
             text-align: left; /* Texte aligné à gauche dans la liste */
             width: 100%; /* Liste étendue à la largeur disponible */
@@ -58,35 +57,36 @@
             word-wrap: break-word; /* Gestion des longues phrases */
         }
 
+        li::before {
+            content: ">_ "; /* Ajoute le marqueur personnalisé */
+            color: #000; /* Couleur noire */
+            font-weight: bold; /* Met le marqueur en gras */
+            margin-right: 5px; /* Espacement entre le marqueur et le texte */
+        }
+
         /* Champ texte */
- textarea {
-    margin: 10px 0;
-    padding: 12px 15px; /* Plus d'espace interne */
-    width: 100%;
-    max-width: 100%;
-    font-family: 'IBM Plex Mono', monospace; /* Uniformité avec le reste */
-    font-size: 1rem;
-    line-height: 1.5; /* Meilleure lisibilité */
-    border: 1px solid #ddd; /* Bordure légère et discrète */
-    border-radius: 8px; /* Coins subtilement arrondis */
-    background-color: #f9f9f9; /* Fond doux et clair */
-    color: #000; /* Texte noir */
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Ombre interne légère */
-    box-sizing: border-box;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
+        textarea {
+            margin: 10px 0;
+            padding: 12px 15px; /* Plus d'espace interne */
+            width: 100%;
+            max-width: 100%;
+            font-family: 'IBM Plex Mono', monospace; /* Uniformité avec le reste */
+            font-size: 1rem;
+            line-height: 1.5; /* Meilleure lisibilité */
+            border: 1px solid #ddd; /* Bordure légère et discrète */
+            border-radius: 8px; /* Coins subtilement arrondis */
+            background-color: #f9f9f9; /* Fond doux et clair */
+            color: #000; /* Texte noir */
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Ombre interne légère */
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
 
-textarea:focus {
-    outline: none; /* Supprime le contour bleu par défaut */
-    border-color: #373B44; /* Couleur harmonieuse au focus */
-    box-shadow: 0 0 5px rgba(55, 59, 68, 0.3); /* Effet lumineux subtil */
-    background-color: #fff; /* Fond légèrement éclairci */
-}
-
-        /* Surlignage noir au focus */
         textarea:focus {
-            outline: none; /* Supprime le style bleu par défaut */
-            border: 1px solid #000; /* Bordure noire */
+            outline: none; /* Supprime le contour bleu par défaut */
+            border-color: #373B44; /* Couleur harmonieuse au focus */
+            box-shadow: 0 0 5px rgba(55, 59, 68, 0.3); /* Effet lumineux subtil */
+            background-color: #fff; /* Fond légèrement éclairci */
         }
 
         /* Nouveau style pour le bouton */
@@ -125,40 +125,7 @@ textarea:focus {
             color: #fff;
         }
 
-        /* Media Queries pour les écrans moyens */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.5rem; /* Taille réduite pour écrans moyens */
-            }
-
-            textarea {
-                font-size: 0.9rem; /* Réduction légère de la taille */
-                padding: 8px;
-            }
-
-            li {
-                margin: 8px 0; /* Réduit l'espacement */
-            }
-        }
-
-        /* Media Queries pour les petits écrans */
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 1.2rem; /* Taille réduite pour écrans petits */
-            }
-
-            textarea {
-                font-size: 0.8rem; /* Plus petite taille de texte */
-                padding: 10px; /* Assure un espacement suffisant */
-                width: 90%; /* Limite la largeur à 90 % de l’écran */
-            }
-
-            li {
-                margin: 5px 0; /* Réduit l'espacement pour petits écrans */
-            }
-        }
     </style>
-
 </head>
 <body>
     <main>
