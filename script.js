@@ -52,17 +52,15 @@ function loadApprovedAphorisms() {
                 const data = doc.data();
                 const li = document.createElement('li');
 
-                // Formatage de la date
+                // Formatage de la date au format court jour/mois/année
                 let formattedDate = '';
                 if (data.timestamp) {
-                    const date = data.timestamp.toDate(); // Convertit le timestamp Firebase en objet Date
+                    const date = data.timestamp.toDate();
                     formattedDate = new Intl.DateTimeFormat('fr-FR', {
                         year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                    }).format(date); // Formate la date
+                        month: '2-digit',
+                        day: '2-digit'
+                    }).format(date); // Produit un format comme "09/08/2024"
                 }
 
                 // Ajoute le texte et la date dans l'élément li
