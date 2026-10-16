@@ -1,0 +1,21 @@
+{
+  "name": "classemediocre",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev --port 5190",
+    "build": "vite build",
+    "preview": "vite preview --port 4190",
+    "publish-site": "vite build && rsync -a --delete --exclude CNAME --exclude aphorismes.json --exclude .nojekyll build/ ../docs/"
+  },
+  "dependencies": {
+    "@dg/ui": "file:../../interfaces/packages/ui"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^4.0.0",
+    "@sveltejs/kit": "^3.1.0",
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "svelte": "^5.57.2",
+    "vite": "^8.3.4"
+  }
+}
