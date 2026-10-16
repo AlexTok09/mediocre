@@ -3,6 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Dark by default; a visitor who picks light with the toggle keeps it (dg-theme = "light"). -->
+    <script>
+      try {
+        if (localStorage.getItem("dg-theme") !== "light") document.documentElement.dataset.theme = "dark";
+      } catch {
+        document.documentElement.dataset.theme = "dark";
+      }
+    </script>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ERJN27LSXM"></script>
     <script>

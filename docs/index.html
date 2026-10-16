@@ -3,6 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Dark by default; a visitor who picks light with the toggle keeps it (dg-theme = "light"). -->
+    <script>
+      try {
+        if (localStorage.getItem("dg-theme") !== "light") document.documentElement.dataset.theme = "dark";
+      } catch {
+        document.documentElement.dataset.theme = "dark";
+      }
+    </script>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ERJN27LSXM"></script>
     <script>
@@ -35,15 +43,15 @@
 			
 			<script>
 				{
-					__sveltekit_iqxvru = {
+					__sveltekit_1tm4zbk = {
 						base: "",
-						version: "1792157523360"
+						version: "1792159827932"
 					};
 
 					const element = document.currentScript.parentElement;
 
 					import("/_app/immutable/entry/start.BlLbcl_m.js").then(async (kit) => {
-						kit.init(__sveltekit_iqxvru);
+						kit.init(__sveltekit_1tm4zbk);
 						const app = await import("/_app/immutable/entry/app.BMN-VQry.js");
 						kit.start(app, element, {
 							node_ids: [0, 2],
