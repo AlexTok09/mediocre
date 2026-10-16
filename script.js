@@ -1,105 +1,79 @@
-// Configuration Firebase - Remplace les valeurs par celles de ton projet Firebase
-const firebaseConfig = {
-    apiKey: "AIzaSyDGEmhoWkXh6hawMlCm3MdfrHjkDr7Gn1Q",
-    authDomain: "mediocregit.firebaseapp.com",
-    databaseURL: "https://mediocregit-default-rtdb.firebaseio.com",
-    projectId: "mediocregit",
-    storageBucket: "mediocregit.appspot.com",
-    messagingSenderId: "530828482083",
-    appId: "1:530828482083:web:d02f170dd53878b02bc396",
-    measurementId: "G-ERJN27LSXM"
-};
-
-// Import des modules Firebase nécessaires
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-import {
-    getFirestore,
-    collection,
-    addDoc,
-    onSnapshot,
-    query,
-    where,
-    orderBy,
-    serverTimestamp
-} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
-
-// Initialisation Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// Les aphorismes approuvés sont dans aphorismes.json (le plus récent en premier).
+// Les propositions sont envoyées par mail via FormSubmit, puis modérées à la main.
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/9bb8a299d5d83ccd35662cbac376dacc";
 
 // Références DOM
 const aphorismsList = document.getElementById('aphorisms-list');
 const newAphorismInput = document.getElementById('new-aphorism');
 const submitButton = document.getElementById('submit-aphorism');
 
-// Fonction pour charger les aphorismes approuvés en temps réel, triés par le plus récent avec date discrète
-function loadApprovedAphorisms() {
-    console.log("Chargement des aphorismes approuvés...");
-    const approvedQuery = query(
-        collection(db, "aphorisms"),
-        where("approved", "==", true),
-        orderBy("timestamp", "desc") // Trie par date décroissante
-    );
+// Charge les aphorismes approuvés avec une date discrète
+async function loadApprovedAphorisms() {
+    try {
+        const response = await fetch('aphorismes.json', { cache: 'no-cache' });
+        const aphorisms = await response.json();
 
-    onSnapshot(approvedQuery, (querySnapshot) => {
-        aphorismsList.innerHTML = ''; // Efface la liste actuelle avant de la recharger
-
-        if (querySnapshot.empty) {
-            console.log("Aucun aphorisme approuvé trouvé.");
+        aphorismsList.innerHTML = '';
+        if (aphorisms.length === 0) {
             aphorismsList.innerHTML = '<li>Aucun aphorisme approuvé pour le moment.</li>';
-        } else {
-            querySnapshot.forEach(doc => {
-                const data = doc.data();
-                const li = document.createElement('li');
-
-                // Formatage de la date au format court jour/mois/année
-                let formattedDate = '';
-                if (data.timestamp) {
-                    const date = data.timestamp.toDate();
-                    formattedDate = new Intl.DateTimeFormat('fr-FR', {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit'
-                    }).format(date); // Produit un format comme "09/08/2024"
-                }
-
-                // Ajoute le texte et la date dans l'élément li
-                li.innerHTML = `
-                    <span>${data.text}</span>
-                    <small style="color: #888; font-size: 0.8rem; margin-left: 10px;">(${formattedDate})</small>
-                `;
-
-                aphorismsList.appendChild(li);
-            });
-            console.log("Aphorismes approuvés chargés avec succès.");
+            return;
         }
-    }, (error) => {
+
+        for (const { texte, date } of aphorisms) {
+            const li = document.createElement('li');
+
+            const span = document.createElement('span');
+            span.textContent = texte;
+            li.appendChild(span);
+
+            if (date) {
+                // Format court jour/mois/année, ex. "09/08/2024"
+                const [y, m, d] = date.split('-');
+                const small = document.createElement('small');
+                small.style.cssText = 'color: #888; font-size: 0.8rem; margin-left: 10px;';
+                small.textContent = `(${d}/${m}/${y})`;
+                li.appendChild(small);
+            }
+
+            aphorismsList.appendChild(li);
+        }
+    } catch (error) {
         console.error("Erreur lors du chargement des aphorismes :", error);
-    });
+    }
 }
 
-// Fonction pour soumettre un nouvel aphorisme
+// Soumet un nouvel aphorisme
 submitButton.addEventListener('click', async () => {
-    const text = newAphorismInput.value.trim(); // Récupère et nettoie l'entrée utilisateur
+    const text = newAphorismInput.value.trim();
 
-    if (text) {
-        try {
-            const docRef = await addDoc(collection(db, "aphorisms"), {
-                text: text,
-                approved: false, // Aphorisme non approuvé par défaut
-                timestamp: serverTimestamp() // Ajout de la date/heure
-            });
-            console.log("Aphorisme soumis avec succès. Document ID :", docRef.id);
-            alert("Merci ! Votre aphorisme a été soumis pour validation auprès de notre comité de la médiocrité.");
-            newAphorismInput.value = ''; // Vide le champ d'entrée après soumission
-        } catch (error) {
-            console.error("Erreur lors de la soumission :", error);
-            alert("Une erreur est survenue. Veuillez réessayer.");
-        }
-    } else {
+    if (!text) {
         alert("Veuillez entrer un aphorisme avant de soumettre !");
+        return;
+    }
+
+    submitButton.disabled = true;
+    try {
+        const response = await fetch(FORM_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+                aphorisme: text,
+                _subject: "[classemediocre] Nouvelle proposition",
+                _template: "box",
+                _captcha: "false",
+                _honey: document.getElementById('honey').value
+            })
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        alert("Merci ! Votre aphorisme a été soumis pour validation auprès de notre comité de la médiocrité.");
+        newAphorismInput.value = '';
+    } catch (error) {
+        console.error("Erreur lors de la soumission :", error);
+        alert("Une erreur est survenue. Veuillez réessayer.");
+    } finally {
+        submitButton.disabled = false;
     }
 });
 
-// Chargement initial des aphorismes approuvés
 loadApprovedAphorisms();
