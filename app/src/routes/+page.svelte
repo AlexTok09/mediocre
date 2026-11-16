@@ -76,6 +76,17 @@
 
 <Heading title="Le sujet de la classe médiocre" metadata={loading === "done" ? `${aphorisms.length} aphorismes` : ""} />
 
+<Section id="introduction">
+  <div class="intro stack">
+    <p class="prose">Ni classe en soi, ni classe pour soi, ni bourgeoise, ni prolétaire, ni dominante, ni laborieuse, ni moyenne, la classe médiocre est une classe molle. Elle regroupe une cohorte d’individus vulgaires qui peuplent tous les étages du monde social ; les sujets de la classe médiocre sont indistinctement partout et nulle part ; la médiocrité est dans les âmes et dans les corps.</p>
+    <p class="prose">Si la classe médiocre est l’entité sociologique la plus insaisissable jamais créée, c’est parce qu’elle regroupe avant tout un ensemble diffus de pratiques et d’attitudes que l’on trouve dans toutes les strates de la société : du port de la doudoune sans manche à l’achat d’un <a href="https://www.instagram.com/reel/DDXM_qXi1sA/">robot tondeur</a>.</p>
+    <p class="prose">La classe médiocre est un concept aussi plastique que son objet, on ne peut donc en formuler aucune définition rigide. Pour la définir, nous avons besoin de votre aide.</p>
+    <p class="prose">Médiocrité oblige, la validation de vos contributions s’effectue de manière totalement centralisée. Notre comité de la médiocrité révisera vos écrits et les validera, ou non, à sa discrétion. Centralisée, car les médiocres aiment le pouvoir.</p>
+    <p class="prose">Médiocrement vôtre.</p>
+    <p class="metadata">Originellement publié dans <a href="https://lundi.am/classemediocre-com">lundimatin</a>.</p>
+  </div>
+</Section>
+
 <Section id="proposer">
   <SectionHead num="01" title="Proposer" />
   <form class="stack" novalidate onsubmit={submit} aria-busy={status === "pending"}>
@@ -92,7 +103,7 @@
         aria-invalid={invalid || undefined}
         aria-describedby={invalid ? "aphorisme-help aphorisme-error" : "aphorisme-help"}
       ></textarea>
-      <p class="field-help" id="aphorisme-help">Chaque proposition est lue par le comité avant publication.</p>
+      <p class="field-help" id="aphorisme-help">Chaque proposition est lue par le comité médiocre avant publication.</p>
       {#if invalid}<p class="field-error" id="aphorisme-error">Le champ est vide.</p>{/if}
     </div>
     <!-- Spam trap: hidden from people, filled by bots. -->
@@ -126,6 +137,14 @@
   /* Wide enough for a long aphorism on one or two lines. */
   form {
     max-width: 48rem;
+  }
+
+  .intro {
+    max-width: var(--formatted-max-width);
+  }
+
+  .intro p {
+    margin: 0;
   }
 
   .honey {

@@ -1,1 +1,0 @@
-import{t as e}from"../chunks/DK3Fl9T5.js";import{tt as t}from"../chunks/D5cpxuQ9.js";import{t as n}from"../chunks/mK3Qyb8N.js";var r=e({trailingSlash:()=>i}),i=`never`;t();function a(e){n(e,{})}export{a as component,r as universal};
