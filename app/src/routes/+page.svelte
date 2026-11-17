@@ -84,6 +84,7 @@
     <p class="prose">Médiocrité oblige, la validation de vos contributions s’effectue de manière totalement centralisée. Notre comité de la médiocrité révisera vos écrits et les validera, ou non, à sa discrétion. Centralisée, car les médiocres aiment le pouvoir.</p>
     <p class="prose">Médiocrement vôtre.</p>
     <p class="metadata">Originellement publié dans <a href="https://lundi.am/classemediocre-com">lundimatin</a>.</p>
+    <p class="metadata">classemediocre.com est un projet <a href="https://www.distributed.gallery/">Distributed Gallery</a>.</p>
   </div>
 </Section>
 
